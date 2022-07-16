@@ -23,7 +23,7 @@ export default {
       let res = await getMusicItemList(id);
       console.log(res);
       state.playlist = res.data.playlist;
-      let result = await getItemList(id);
+      let result = await getItemList({ id, limit: 10, offset: 0 });
       console.log(result);
       state.itemList = result.data.songs;
       sessionStorage.setItem("itemDetail", JSON.stringify(state));

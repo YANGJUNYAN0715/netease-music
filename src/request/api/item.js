@@ -9,6 +9,6 @@ export function getMusicItemList(data) {
 export function getItemList(data) {
   return service({
     method: "GET",
-    url: `/playlist/track/all?id=${data.id}&limit=10&offset=0`,
+    url: `/playlist/track/all?id=${data.id}&limit=${data.limit}&offset=${data.offset}`,
   });
 }

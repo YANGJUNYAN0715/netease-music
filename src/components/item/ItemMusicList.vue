@@ -1,14 +1,3 @@
-<!-- <template>
-  <div>播放</div>
-</template>
-<script>
-export default {
-  setup(props) {
-    console.log(props);
-  },
-  props: ["itemList", "subscribedCount"],
-};
-</script> -->
 <template>
   <div class="itemMusicList">
     <div class="itemListTop">
@@ -69,20 +58,20 @@ export default {
 <style lang="less" scoped>
 .itemMusicList {
   width: 100%;
-  height: 10rem;
+  height: 100rem;
   background-color: #fff;
-  padding: 0 0.2rem;
-  margin-top: 0.2rem;
-  border-top-left-radius: 0.4rem;
-  border-top-right-radius: 0.4rem;
+  padding: 0 2rem;
+  margin-top: 2rem;
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
   .itemListTop {
     width: 100%;
-    height: 1rem;
+    height: 10rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     .listLeft {
-      width: 3rem;
+      width: 30rem;
       height: 100%;
       display: flex;
       justify-content: space-between;
@@ -95,7 +84,7 @@ export default {
         font-weight: 700;
         span {
           font-weight: 400;
-          font-size: 0.24rem;
+          font-size: 2.4rem;
           color: #999;
         }
       }
@@ -104,14 +93,14 @@ export default {
       display: flex;
       align-items: center;
       background-color: red;
-      padding: 0.2rem;
-      border-radius: 0.4rem;
+      padding: 2rem;
+      border-radius: 4rem;
       color: #fff;
       .icon {
-        width: 0.3rem;
-        height: 0.3rem;
+        width: 3rem;
+        height: 3rem;
         fill: #fff;
-        margin-right: 0.1rem;
+        margin-right: 1rem;
         stroke: #fff;
         stroke-width: 50;
       }
@@ -121,7 +110,7 @@ export default {
     width: 100%;
     .item {
       width: 100%;
-      height: 1.4rem;
+      height: 14rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -132,13 +121,13 @@ export default {
         align-items: center;
         .leftSpan {
           display: inline-block;
-          width: 0.2rem;
+          width: 2rem;
           text-align: center;
         }
         div {
           p {
-            width: 4.54rem;
-            height: 0.4rem;
+            width: 45.4rem;
+            height: 4rem;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -146,10 +135,10 @@ export default {
           }
           span {
             font-weight: 400;
-            font-size: 0.24rem;
+            font-size: 2.4rem;
             color: #999;
           }
-          margin-left: 0.3rem;
+          margin-left: 3rem;
         }
       }
       .itemRight {
