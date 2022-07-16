@@ -28,13 +28,13 @@ export default {
 <style lang="less" scoped>
 .FooterMusic {
   width: 100%;
-  height: 1.4rem;
+  height: 14rem;
   background-color: #fff;
   position: fixed;
   bottom: 0;
-  border-top: 1px solid #999;
+  border-top: 10px solid #999;
   display: flex;
-  padding: 0.2rem;
+  padding: 2rem;
   justify-content: space-between;
   .footerLeft {
     width: 60%;
@@ -43,8 +43,8 @@ export default {
     justify-content: space-around;
     align-items: center;
     img {
-      width: 1rem;
-      height: 1rem;
+      width: 10rem;
+      height: 10rem;
       border-radius: 50%;
     }
   }
@@ -55,8 +55,8 @@ export default {
     justify-content: space-between;
     align-items: center;
     .icon {
-      width: 0.6rem;
-      height: 0.6rem;
+      width: 6rem;
+      height: 6rem;
     }
   }
 }
