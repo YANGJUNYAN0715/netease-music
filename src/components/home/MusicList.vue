@@ -12,14 +12,16 @@
         :show-indicators="false"
       >
         <van-swipe-item v-for="item in musicList" :key="item">
-          <img :src="item.picUrl" alt="" />
-          <span class="playCount">
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-bofang"></use>
-            </svg>
-            {{ changeCount(item.playCount) }}
-          </span>
-          <span class="name">{{ item.name }}</span>
+          <router-link :to="{ path: '/itemMusic', query: { id: item.id } }">
+            <img :src="item.picUrl" alt="" />
+            <span class="playCount">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-bofang"></use>
+              </svg>
+              {{ changeCount(item.playCount) }}
+            </span>
+            <span class="name">{{ item.name }}</span>
+          </router-link>
         </van-swipe-item>
       </van-swipe>
     </div>
