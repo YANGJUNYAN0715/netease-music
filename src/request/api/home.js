@@ -6,9 +6,9 @@ export function getBanner() {
   });
 }
 // 获取发现好歌单
-export function getDiscover() {
+export function getMusicList() {
   return service({
     method: "GET",
-    url: "/personalized",
+    url: "/personalized?limit=10",
   });
 }
