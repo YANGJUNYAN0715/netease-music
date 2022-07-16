@@ -157,7 +157,7 @@ export default {
         vertical-align: middle;
       }
       span {
-        padding: 0 2.6rem;
+        padding: 0 2rem;
         font-size: 2rem;
         color: #fff;
       }
@@ -241,19 +241,3 @@ export default {
   }
 }
 </style>
-<!-- <template>
-  <div class="itemMusicTop">
-    <svg class="icon" aria-hidden="true" @click="$router.go(-1)">
-      <use xlink:href="#icon-zuojiantou"></use>
-    </svg>
-    <span>歌单</span>
-  </div>
-</template>
-<script>
-export default {
-  setup(props) {
-    console.log(props);
-  },
-  props: ["playlist"],
-};
-</script> -->
