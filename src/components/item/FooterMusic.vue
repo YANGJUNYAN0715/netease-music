@@ -8,11 +8,16 @@
       </div>
     </div>
     <div class="footerRight">
-      <svg class="icon liebiao" aria-hidden="true" v-if="IsbtnShow">
-        <use xlink:href="#icon-bofanganniu" @click="play"></use>
+      <svg
+        class="icon liebiao"
+        aria-hidden="true"
+        v-if="isbtnShow"
+        @click="play"
+      >
+        <use xlink:href="#icon-bofanganniu"></use>
       </svg>
-      <svg class="icon libiao" aria-hidden="true" v-else>
-        <use xlink:href="#icon-weibiaoti--" @click="play"></use>
+      <svg class="icon libiao" aria-hidden="true" v-else @click="play">
+        <use xlink:href="#icon-weibiaoti--"></use>
       </svg>
       <svg class="icon libiao" aria-hidden="true">
         <use xlink:href="#icon-zu"></use>
@@ -46,6 +51,14 @@ export default {
     },
     ...mapMutations(["updateIsbtnShow"]),
   },
+  watch: {
+    playListIndex: function () {
+      this.$refs.audio.autoplay = true;
+      if (this.$refs.audio.paused) {
+        this.updateIsbtnShow(false);
+      }
+    },
+  },
 };
 </script>
 <style lang="less" scoped>
@@ -71,15 +84,15 @@ export default {
       height: 10rem;
       border-radius: 50%;
     }
-    .footerRight {
-      width: 40%;
-      height: 100%;
-      display: flex;
-      justify-content: space-between;
-      .icon {
-        width: 6rem;
-        height: 30px;
-      }
+  }
+  .footerRight {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    .icon {
+      width: 6rem;
+      height: 30px;
     }
   }
 }
