@@ -7,56 +7,79 @@
         <span>横滑切换上下首</span>
       </div>
     </div>
-    <div class="footerLeft">
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-bofanganniu"></use>
+    <div class="footerRight">
+      <svg class="icon liebiao" aria-hidden="true" v-if="IsbtnShow">
+        <use xlink:href="#icon-bofanganniu" @click="play"></use>
       </svg>
-      <svg class="icon" aria-hidden="true">
+      <svg class="icon libiao" aria-hidden="true" v-else>
+        <use xlink:href="#icon-weibiaoti--" @click="play"></use>
+      </svg>
+      <svg class="icon libiao" aria-hidden="true">
         <use xlink:href="#icon-zu"></use>
       </svg>
     </div>
+    <audio
+      ref="audio"
+      :src="`https://music.163.com/song/media/outer/url?id=${playList[playListIndex].id}.mp3`"
+    ></audio>
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { runInThisContext } from "vm";
+import { mapMutations, mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["playList", "playListIndex"]),
+    ...mapState(["playList", "playListIndex", "isbtnShow"]),
+  },
+  mounted() {
+    console.log(this.$refs);
+  },
+  methods: {
+    play: function () {
+      if (this.$refs.audio.paused) {
+        this.$refs.audio.play();
+        this.updateIsbtnShow(false);
+      } else {
+        this.$refs.audio.pause();
+        this.updateIsbtnShow(true);
+      }
+    },
+    ...mapMutations(["updateIsbtnShow"]),
   },
 };
 </script>
 <style lang="less" scoped>
 .FooterMusic {
   width: 100%;
-  height: 14rem;
+  height: 13rem;
   background-color: #fff;
   position: fixed;
   bottom: 0;
-  border-top: 10px solid #999;
+  border-top: 2px solid #999;
   display: flex;
-  padding: 2rem;
-  justify-content: space-between;
+  padding: 5px;
+  justify-content: space-around;
+  align-items: center;
   .footerLeft {
-    width: 60%;
+    width: 50%;
     height: 100%;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
+
     img {
       width: 10rem;
       height: 10rem;
       border-radius: 50%;
     }
-  }
-  .footerRight {
-    width: 20%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .icon {
-      width: 6rem;
-      height: 6rem;
+    .footerRight {
+      width: 40%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      .icon {
+        width: 6rem;
+        height: 30px;
+      }
     }
   }
 }

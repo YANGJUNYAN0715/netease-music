@@ -15,11 +15,16 @@ export default createStore({
         id: 1446137141,
         name: "雨爱（抖音版）",
         ar: [{ name: "灏灏灏仔" }],
-        playListIndex: 0,
       },
     ],
-    mutations: {},
-    actions: {},
-    modules: {},
+    playListIndex: 0,
+    isbtnShow: true,
   },
+  mutations: {
+    updateIsbtnShow: function (state, value) {
+      state.isbtnShow = value;
+    },
+  },
+  actions: {},
+  modules: {},
 });
