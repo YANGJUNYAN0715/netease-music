@@ -8,20 +8,20 @@
       <div class="leftMarquee">
         <Vue3Marquee>{{ musicList.al.name }}</Vue3Marquee>
         <span v-for="item in musicList.ar" :key="item">{{ item.name }}</span>
-        <svg class="icon libiao" aria-hidden="true" @click="$router.go(-1)">
+        <svg class="icon libiao" aria-hidden="true">
           <use xlink:href="#icon-youjiantou1"></use>
         </svg>
       </div>
     </div>
     <div class="detailTopRight">
-      <svg class="icon libiao" aria-hidden="true" @click="$router.go(-1)">
+      <svg class="icon libiao" aria-hidden="true">
         <use xlink:href="#icon-fenxiang"></use>
       </svg>
     </div>
   </div>
 </template>
 <script>
-import Vue3Marquee from "vue3-marquee";
+import { Vue3Marquee } from "vue3-marquee";
 import "vue3-marquee/dist/style.css";
 export default {
   mounted() {
@@ -33,21 +33,38 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="less" scoped>
 .bgimg {
   width: 100%;
-  height: 50%;
+  height: 80%;
   position: absolute;
   z-index: -1;
-  filter: blur(100px);
+  filter: blur(70px);
 }
-
 .detailTop {
-  position: relative;
-  height: 50px;
   width: 100%;
-  border-bottom: 1px solid #e5e5e5;
+  height: 10rem;
+  display: flex;
+  padding: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  fill: #fff;
   .detailTopLeft {
+    display: flex;
+    align-items: center;
+    .leftMarquee {
+      width: 30rem;
+      height: 100%;
+      margin-left: 4rem;
+      span {
+        color: #999;
+      }
+      .icon {
+        width: 3rem;
+        height: 3rem;
+        fill: #999;
+      }
+    }
   }
 }
 </style>
