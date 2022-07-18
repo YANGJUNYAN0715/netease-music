@@ -1,6 +1,6 @@
 <template>
   <div class="FooterMusic">
-    <div class="footerLeft">
+    <div class="footerLeft" @click="updateDetailShow">
       <img :src="playList[playListIndex].al.picUrl" alt="" />
       <div>
         <p>{{ playList[playListIndex].al.name }}</p>
@@ -27,14 +27,22 @@
       ref="audio"
       :src="`https://music.163.com/song/media/outer/url?id=${playList[playListIndex].id}.mp3`"
     ></audio>
+    <van-popup
+      v-model:show="detailShow"
+      position="right"
+      :style="{ height: '100%', width: '100%' }"
+    >
+      <MusicDetail></MusicDetail>
+    </van-popup>
   </div>
 </template>
 <script>
 import { runInThisContext } from "vm";
 import { mapMutations, mapState } from "vuex";
+import MusicDetail from "./MusicDetail.vue";
 export default {
   computed: {
-    ...mapState(["playList", "playListIndex", "isbtnShow"]),
+    ...mapState(["playList", "playListIndex", "isbtnShow", "detailShow"]),
   },
   mounted() {
     console.log(this.$refs);
@@ -49,7 +57,7 @@ export default {
         this.updateIsbtnShow(true);
       }
     },
-    ...mapMutations(["updateIsbtnShow"]),
+    ...mapMutations(["updateIsbtnShow", "updateDetailShow"]),
   },
   watch: {
     playListIndex: function () {
@@ -59,6 +67,7 @@ export default {
       }
     },
   },
+  components: { MusicDetail },
 };
 </script>
 <style lang="less" scoped>

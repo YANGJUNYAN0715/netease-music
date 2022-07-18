@@ -19,6 +19,7 @@ export default createStore({
     ],
     playListIndex: 0,
     isbtnShow: true,
+    detailShow: false,
   },
   mutations: {
     updateIsbtnShow: function (state, value) {
@@ -29,6 +30,9 @@ export default createStore({
     },
     updatePlayListIndex: function (state, value) {
       state.playListIndex = value;
+    },
+    updateDetailShow: function (state) {
+      state.detailShow = !state.detailShow;
     },
   },
   actions: {},
