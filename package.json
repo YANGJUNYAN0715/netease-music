@@ -15,6 +15,7 @@
     "vant": "^3.5.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
+    "vue3-marquee": "^3.0.7",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
