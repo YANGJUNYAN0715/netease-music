@@ -5,14 +5,12 @@
       <svg class="icon libiao" aria-hidden="true" @click="$router.go(-1)">
         <use xlink:href="#icon-zuojiantou"></use>
       </svg>
-      <div>
-        <span>
-          <Vue3Marquee>{{ musicList.al.name }}</Vue3Marquee>
-          <span v-for="item in musicList.ar" :key="item">{{ item.name }}</span>
-          <svg class="icon libiao" aria-hidden="true" @click="$router.go(-1)">
-            <use xlink:href="#icon-youjiantou1"></use>
-          </svg>
-        </span>
+      <div class="leftMarquee">
+        <Vue3Marquee>{{ musicList.al.name }}</Vue3Marquee>
+        <span v-for="item in musicList.ar" :key="item">{{ item.name }}</span>
+        <svg class="icon libiao" aria-hidden="true" @click="$router.go(-1)">
+          <use xlink:href="#icon-youjiantou1"></use>
+        </svg>
       </div>
     </div>
     <div class="detailTopRight">
@@ -38,9 +36,18 @@ export default {
 <style>
 .bgimg {
   width: 100%;
-  height: 30%;
+  height: 50%;
   position: absolute;
   z-index: -1;
   filter: blur(100px);
+}
+
+.detailTop {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  .detailTopLeft {
+  }
 }
 </style>
