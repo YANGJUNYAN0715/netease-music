@@ -32,7 +32,11 @@
       position="right"
       :style="{ height: '100%', width: '100%' }"
     >
-      <MusicDetail :musicList="playList[playListIndex]" />
+      <MusicDetail
+        :musicList="playList[playListIndex]"
+        :play="play"
+        :isbtnShow="isbtnShow"
+      />
     </van-popup>
   </div>
 </template>

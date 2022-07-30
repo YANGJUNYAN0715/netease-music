@@ -2,7 +2,7 @@
   <img :src="musicList.al.picUrl" alt="" class="bgimg" />
   <div class="detailTop">
     <div class="detailTopLeft">
-      <svg class="icon libiao" aria-hidden="true" @click="$router.go(-1)">
+      <svg class="icon libiao" aria-hidden="true" @click="updateDetailShow">
         <use xlink:href="#icon-zuojiantou"></use>
       </svg>
       <div class="leftMarquee">
@@ -19,15 +19,69 @@
       </svg>
     </div>
   </div>
+  <div class="detailContent">
+    <img src="../../assets/cd.png" alt="" class="img_cd" />
+    <img src="../../assets/needle-ab.png" alt="" class="img_needle" />
+    <img :src="musicList.al.picUrl" alt="" class="img_ar" />
+  </div>
+  <div class="detailFooter">
+    <div class="footerTop">
+      <svg class="icon libiao" aria-hidden="true">
+        <use xlink:href="#icon-aixin"></use>
+      </svg>
+      <svg class="icon libiao" aria-hidden="true">
+        <use xlink:href="#icon-iconfontzhizuobiaozhun023146"></use>
+      </svg>
+      <svg class="icon libiao" aria-hidden="true">
+        <use xlink:href="#icon-yinlechangpian"></use>
+      </svg>
+      <svg class="icon libiao" aria-hidden="true">
+        <use xlink:href="#icon-iconfontzhizuobiaozhun023110"></use>
+      </svg>
+      <svg class="icon libiao" aria-hidden="true">
+        <use xlink:href="#icon-liebiao-"></use>
+      </svg>
+    </div>
+    <div class="footerContent"></div>
+    <div class="footer">
+      <svg class="icon fenxiang" aria-hidden="true">
+        <use xlink:href="#icon-fenxiang"></use>
+      </svg>
+      <svg class="icon shangyishou" aria-hidden="true">
+        <use xlink:href="#icon-shangyishoushangyige"></use>
+      </svg>
+      <svg
+        class="icon bofang"
+        aria-hidden="true"
+        v-if="isbtnShow"
+        @click="play"
+      >
+        <use xlink:href="#icon-bofang1"></use>
+      </svg>
+      <svg class="icon bofang" aria-hidden="true" v-else @click="play">
+        <use xlink:href="#icon-zanting"></use>
+      </svg>
+      <svg class="icon xiayishou" aria-hidden="true">
+        <use xlink:href="#icon-xiayigexiayishou"></use>
+      </svg>
+      <svg class="icon libiao" aria-hidden="true">
+        <use xlink:href="#icon-zu"></use>
+      </svg>
+    </div>
+  </div>
 </template>
 <script>
 import { Vue3Marquee } from "vue3-marquee";
 import "vue3-marquee/dist/style.css";
+import { mapMutations } from "vuex";
 export default {
   mounted() {
     console.log(this.musicList);
   },
-  props: ["musicList"],
+  props: ["musicList", "isbtnShow", "play"],
+  methods: {
+    ...mapMutations(["updateDetailShow"]),
+  },
   components: {
     Vue3Marquee,
   },
@@ -64,6 +118,72 @@ export default {
         height: 3rem;
         fill: #999;
       }
+    }
+  }
+}
+.detailContent {
+  width: 100%;
+  height: 90rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  .img_needle {
+    width: 20rem;
+    height: 30rem;
+    position: absolute;
+    left: 46%;
+    transform-origin: 0 0;
+    transform: rotate(-10deg);
+    transition: all 2s;
+  }
+  .img_cd {
+    width: 50rem;
+    height: 50rem;
+    position: absolute;
+    bottom: 23rem;
+    z-index: -1;
+  }
+  .img_ar {
+    width: 32rem;
+    height: 32rem;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 31.4rem;
+  }
+}
+.detailFooter {
+  width: 100%;
+  height: 30rem;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  bottom: 2rem;
+  .footerTop {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .icon {
+      width: 6.4rem;
+      height: 6.4rem;
+      fill: rgb(245, 234, 234);
+    }
+  }
+  .footer {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .icon {
+      fill: rgb(67, 67, 67);
+    }
+    .bofang {
+      width: 10rem;
+      height: 10rem;
     }
   }
 }
