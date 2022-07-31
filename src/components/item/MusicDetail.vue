@@ -19,11 +19,22 @@
       </svg>
     </div>
   </div>
-  <div class="detailContent">
+  <div class="detailContent" v-show="isLyricShow">
     <img src="../../assets/cd.png" alt="" class="img_cd" />
-    <img src="../../assets/needle-ab.png" alt="" class="img_needle" />
-    <img :src="musicList.al.picUrl" alt="" class="img_ar" />
+    <img
+      src="../../assets/needle-ab.png"
+      alt=""
+      class="img_needle"
+      :class="{ img_needle_active: !isbtnShow }"
+    />
+    <img
+      :src="musicList.al.picUrl"
+      alt=""
+      class="img_ar"
+      :class="{ img_ar_active: !isbtnShow, img_ar_paused: isbtnShow }"
+    />
   </div>
+  <div class="musicLyric">{{ lyricList.lyric }}</div>
   <div class="detailFooter">
     <div class="footerTop">
       <svg class="icon libiao" aria-hidden="true">
@@ -73,17 +84,41 @@
 <script>
 import { Vue3Marquee } from "vue3-marquee";
 import "vue3-marquee/dist/style.css";
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
-  mounted() {
-    console.log(this.musicList);
+  data() {
+    return {
+      isLyricShow: false,
+    };
   },
-  props: ["musicList", "isbtnShow", "play"],
-  methods: {
-    ...mapMutations(["updateDetailShow"]),
-  },
-  components: {
-    Vue3Marquee,
+  computed: {
+    ...mapState(["lyricList"]),
+    lyric: function () {
+      let arr;
+      if (this.lyricList.lyric) {
+        arr = this.lyricList.lyric.split(/[{(\r\n)\r\n]}+/).map((item, i) => {
+          let min = item.slice(1, 3);
+          let sec = item.slice(4, 6);
+          let mill = item.slice(7, 10);
+          let lrc = item.slice(11, item.length);
+          if (isNaN(Number(mill))) {
+            mill = item.silce(7, 9);
+            lrc = item.slice(10, item.length);
+          }
+        });
+      }
+    },
+    mounted() {
+      console.log(this.musicList);
+      console.log(this.lyricList.lyric);
+    },
+    props: ["musicList", "isbtnShow", "play"],
+    methods: {
+      ...mapMutations(["updateDetailShow"]),
+    },
+    components: {
+      Vue3Marquee,
+    },
   },
 };
 </script>
@@ -134,7 +169,16 @@ export default {
     position: absolute;
     left: 46%;
     transform-origin: 0 0;
-    transform: rotate(-10deg);
+    transform: rotate(-15deg);
+    transition: all 2s;
+  }
+  .img_needle_active {
+    width: 20rem;
+    height: 30rem;
+    position: absolute;
+    left: 46%;
+    transform-origin: 0 0;
+    transform: rotate(0deg);
     transition: all 2s;
   }
   .img_cd {
@@ -150,6 +194,21 @@ export default {
     border-radius: 50%;
     position: absolute;
     bottom: 31.4rem;
+    animation: rotate_ar 10s linear infinite;
+  }
+  .img_ar_active {
+    animation-play-state: running;
+  }
+  .img_ar_paused {
+    animation-play-state: paused;
+  }
+  @keyframes rotate_ar {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
 .detailFooter {
