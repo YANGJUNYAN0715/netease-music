@@ -34,7 +34,11 @@
       :class="{ img_ar_active: !isbtnShow, img_ar_paused: isbtnShow }"
     />
   </div>
-  <div class="musicLyric">{{ lyricList.lyric }}</div>
+  <div class="musicLyric">
+    <p v-for="item in lyric" :key="item">
+      {{ item.lrc }}
+    </p>
+  </div>
   <div class="detailFooter">
     <div class="footerTop">
       <svg class="icon libiao" aria-hidden="true">
@@ -105,8 +109,10 @@ export default {
             mill = item.silce(7, 9);
             lrc = item.slice(10, item.length);
           }
+          return { min, sec, mill, lrc };
         });
       }
+      return arr;
     },
     mounted() {
       console.log(this.musicList);
@@ -244,6 +250,19 @@ export default {
       width: 10rem;
       height: 10rem;
     }
+  }
+}
+.musicLyric {
+  width: 100%;
+  height: 9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  overflow: scroll;
+  p {
+    color: grey;
   }
 }
 </style>
