@@ -134,7 +134,16 @@ export default {
     position: absolute;
     left: 46%;
     transform-origin: 0 0;
-    transform: rotate(-10deg);
+    transform: rotate(-15deg);
+    transition: all 2s;
+  }
+  .img_needle_active {
+    width: 2rem;
+    height: 3rem;
+    position: absolute;
+    left: 46%;
+    transform-origin: 0 0;
+    transform: rotate(0deg);
     transition: all 2s;
   }
   .img_cd {
