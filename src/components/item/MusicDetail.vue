@@ -21,8 +21,18 @@
   </div>
   <div class="detailContent">
     <img src="../../assets/cd.png" alt="" class="img_cd" />
-    <img src="../../assets/needle-ab.png" alt="" class="img_needle" />
-    <img :src="musicList.al.picUrl" alt="" class="img_ar" />
+    <img
+      src="../../assets/needle-ab.png"
+      alt=""
+      class="img_needle"
+      :class="{ img_needle_active: !isbtnShow }"
+    />
+    <img
+      :src="musicList.al.picUrl"
+      alt=""
+      class="img_ar"
+      :class="{ img_ar_active: !isbtnShow, img_ar_paused: isbtnShow }"
+    />
   </div>
   <div class="detailFooter">
     <div class="footerTop">
@@ -137,6 +147,15 @@ export default {
     transform: rotate(-15deg);
     transition: all 2s;
   }
+  .img_needle_active {
+    width: 20rem;
+    height: 30rem;
+    position: absolute;
+    left: 46%;
+    transform-origin: 0 0;
+    transform: rotate(0deg);
+    transition: all 2s;
+  }
   .img_cd {
     width: 50rem;
     height: 50rem;
@@ -150,6 +169,21 @@ export default {
     border-radius: 50%;
     position: absolute;
     bottom: 31.4rem;
+    animation: rotate_ar 10s linear infinite;
+  }
+  .img_ar_active {
+    animation-play-state: running;
+  }
+  .img_ar_paused {
+    animation-play-state: paused;
+  }
+  @keyframes rotate_ar {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(360deg);
+    }
   }
 }
 .detailFooter {
