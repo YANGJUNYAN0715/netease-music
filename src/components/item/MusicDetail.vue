@@ -108,15 +108,18 @@ export default {
           if (isNaN(Number(mill))) {
             mill = item.silce(7, 9);
             lrc = item.slice(10, item.length);
+            console.log(min, sec, mill, lrc);
           }
           return { min, sec, mill, lrc };
         });
       }
+      console.log(arr);
       return arr;
     },
     mounted() {
       console.log(this.musicList);
-      console.log(this.lyricList.lyric);
+      // console.log(this.musicList);
+      // console.log(this.lyricList.lyric);
     },
     props: ["musicList", "isbtnShow", "play"],
     methods: {
@@ -254,15 +257,15 @@ export default {
 }
 .musicLyric {
   width: 100%;
-  height: 9rem;
+  height: 90rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
-  margin-bottom: 4rem;
   overflow: scroll;
   p {
     color: grey;
+    margin-bottom: 4rem;
   }
 }
 </style>
