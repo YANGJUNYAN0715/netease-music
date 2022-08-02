@@ -45,12 +45,18 @@ import { runInThisContext } from "vm";
 import { mapMutations, mapState } from "vuex";
 import MusicDetail from "./MusicDetail.vue";
 export default {
+  data() {
+    return {
+      interVal: 0,
+    };
+  },
   computed: {
     ...mapState(["playList", "playListIndex", "isbtnShow", "detailShow"]),
   },
   mounted() {
     console.log(this.$refs);
     this.$store.dispatch("getLyric", this.playList[this.playListIndex].id);
+    this.updateTime();
   },
   updated() {
     this.$store.dispatch("getLyric", this.playList[this.playListIndex].id);
@@ -60,12 +66,23 @@ export default {
       if (this.$refs.audio.paused) {
         this.$refs.audio.play();
         this.updateIsbtnShow(false);
+        this.updateTime();
       } else {
         this.$refs.audio.pause();
         this.updateIsbtnShow(true);
+        clearInterval(this.interVal);
       }
     },
-    ...mapMutations(["updateIsbtnShow", "updateDetailShow"]),
+    updateTime: function () {
+      this.interVal = setInterval(() => {
+        this.updateCurrentTime(this.$refs.audio.currentTime);
+      }, 1000);
+    },
+    ...mapMutations([
+      "updateIsbtnShow",
+      "updateDetailShow",
+      "updateCurrentTime",
+    ]),
   },
   watch: {
     playListIndex: function () {

@@ -21,6 +21,7 @@ export default createStore({
     isbtnShow: true,
     detailShow: false,
     lyricList: {},
+    currentTime: 0,
   },
   mutations: {
     updateIsbtnShow: function (state, value) {
@@ -38,11 +39,15 @@ export default createStore({
     updateLyricList: function (state, value) {
       state.lyricList = value;
     },
+    updateCurrentTime: function (state, value) {
+      // console.log(state.currentTime);
+      state.currentTime = value;
+    },
   },
   actions: {
     getLyric: async function (context, value) {
       let res = await getMusicLyric(value);
-      console.log(res);
+      // console.log(res);
       context.commit("updateLyricList", res.data.lrc);
     },
   },

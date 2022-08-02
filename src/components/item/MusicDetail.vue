@@ -19,7 +19,7 @@
       </svg>
     </div>
   </div>
-  <div class="detailContent">
+  <div class="detailContent" v-show="isLyricShow">
     <img src="../../assets/cd.png" alt="" class="img_cd" />
     <img
       src="../../assets/needle-ab.png"
@@ -33,6 +33,18 @@
       class="img_ar"
       :class="{ img_ar_active: !isbtnShow, img_ar_paused: isbtnShow }"
     />
+  </div>
+  <div class="musicLyric">
+    <p
+      v-for="item in lyric"
+      :key="item"
+      :class="{
+        active:
+          currentTime * 1000 >= item.time && currentTime * 1000 < item.pre,
+      }"
+    >
+      {{ item.lrc }}
+    </p>
   </div>
   <div class="detailFooter">
     <div class="footerTop">
@@ -83,10 +95,48 @@
 <script>
 import { Vue3Marquee } from "vue3-marquee";
 import "vue3-marquee/dist/style.css";
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
+  data() {
+    return {
+      isLyricShow: false,
+    };
+  },
+  computed: {
+    ...mapState(["lyricList", "currentTime"]),
+    lyric: function () {
+      let arr;
+      if (this.lyricList.lyric) {
+        arr = this.lyricList.lyric.split(/[(\r\n)\r\n)]+/).map((item, i) => {
+          let min = item.slice(1, 3);
+          let sec = item.slice(4, 6);
+          let mill = item.slice(7, 10);
+          let lrc = item.slice(11, item.length);
+          let time =
+            parseInt(min) * 60 * 1000 + parseInt(sec) * 1000 + parseInt(mill);
+          if (isNaN(Number(mill))) {
+            mill = item.slice(7, 9);
+            lrc = item.slice(10, item.length);
+            time =
+              parseInt(min) * 60 * 1000 + parseInt(sec) * 100 + parseInt(mill);
+          }
+          return { min, sec, mill, lrc, time };
+        });
+        arr.forEach((item, i) => {
+          if (i === arr.length - 1) {
+            item.pre = 0;
+          } else {
+            item.pre = arr[i + 1].time;
+          }
+        });
+      }
+      // console.log(arr);
+      return arr;
+    },
+  },
   mounted() {
-    console.log(this.musicList);
+    // console.log(this.musicList);
+    // console.log(this.lyricList.lyric);
   },
   props: ["musicList", "isbtnShow", "play"],
   methods: {
@@ -184,6 +234,25 @@ export default {
     100% {
       transform: rotateZ(360deg);
     }
+  }
+}
+.musicLyric {
+  width: 100%;
+  height: 80rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  overflow: scroll;
+  p {
+    color: rgb(190, 181, 181);
+    margin-bottom: 4rem;
+  }
+  .active {
+    color: black;
+    font-size: 18px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
   }
 }
 .detailFooter {
