@@ -145,7 +145,7 @@ export default {
   watch: {
     currentTime: function () {
       let p = document.querySelector("p.active");
-      console.log([p]);
+      // console.log([p]);
       if (p.offsetTop > 300) {
         this.$refs.musicLyric.scrollTop = p.offsetTop - 300;
       }
