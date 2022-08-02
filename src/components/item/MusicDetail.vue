@@ -34,7 +34,7 @@
       :class="{ img_ar_active: !isbtnShow, img_ar_paused: isbtnShow }"
     />
   </div>
-  <div class="musicLyric">
+  <div class="musicLyric" ref="musicLyric">
     <p
       v-for="item in lyric"
       :key="item"
@@ -141,6 +141,15 @@ export default {
   props: ["musicList", "isbtnShow", "play"],
   methods: {
     ...mapMutations(["updateDetailShow"]),
+  },
+  watch: {
+    currentTime: function () {
+      let p = document.querySelector("p.active");
+      console.log([p]);
+      if (p.offsetTop > 300) {
+        this.$refs.musicLyric.scrollTop = p.offsetTop - 300;
+      }
+    },
   },
   components: {
     Vue3Marquee,
