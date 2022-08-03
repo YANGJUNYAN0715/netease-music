@@ -123,8 +123,8 @@ export default {
           return { min, sec, mill, lrc, time };
         });
         arr.forEach((item, i) => {
-          if (i === arr.length - 1) {
-            item.pre = 0;
+          if (i === arr.length - 1 || isNaN(arr[i + 1].time)) {
+            item.pre = 100000;
           } else {
             item.pre = arr[i + 1].time;
           }
