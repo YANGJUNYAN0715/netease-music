@@ -54,7 +54,7 @@ export default {
     ...mapState(["playList", "playListIndex", "isbtnShow", "detailShow"]),
   },
   mounted() {
-    console.log(this.$refs);
+    // console.log(this.$refs);
     this.$store.dispatch("getLyric", this.playList[this.playListIndex].id);
     this.updateTime();
   },

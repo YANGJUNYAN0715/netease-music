@@ -19,12 +19,12 @@ export default {
     });
     onMounted(async () => {
       let id = useRoute().query.id;
-      console.log(id);
+      // console.log(id);
       let res = await getMusicItemList(id);
-      console.log(res);
+      // console.log(res);
       state.playlist = res.data.playlist;
       let result = await getItemList({ id, limit: 10, offset: 0 });
-      console.log(result);
+      // console.log(result);
       state.itemList = result.data.songs;
       sessionStorage.setItem("itemDetail", JSON.stringify(state));
     });

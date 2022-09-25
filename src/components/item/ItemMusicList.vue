@@ -43,7 +43,7 @@
 import { mapMutations } from "vuex";
 export default {
   setup(props) {
-    console.log(props);
+    // console.log(props);
   },
   props: ["itemList", "subscribedCount"],
   methods: {

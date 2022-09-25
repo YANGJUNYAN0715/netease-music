@@ -3,22 +3,30 @@
 ## 一个仿网易云音乐移动端app
 
 ## Project setup
+
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 npm run serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Changelog
+
+- 15.07.2022 ~ 24.09.2022 - 0
+  - Complete most of functions
+- 25.09.2022 - 1
+  - Add function of Search
+  - Modify some functions
 
 ![image-20220920180536108](photo/image-20220920180536108.png)
 
