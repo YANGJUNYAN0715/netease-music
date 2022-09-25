@@ -27,6 +27,9 @@ export default createStore({
     updateIsbtnShow: function (state, value) {
       state.isbtnShow = value;
     },
+    pushPlayList: function (state, value) {
+      state.playList.push(value);
+    },
     updatePlayList: function (state, value) {
       state.playList = value;
     },

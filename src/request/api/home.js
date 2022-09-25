@@ -12,3 +12,10 @@ export function getMusicList() {
     url: "/personalized?limit=10",
   });
 }
+
+export default function getSearchResult(data) {
+  return service({
+    method: "GET",
+    url: `/search?keywords=${data}`,
+  });
+}
