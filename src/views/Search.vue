@@ -17,6 +17,7 @@
     <div class="history">
       <div>历史</div>
       <span v-for="(item, index) in searchList" :key="item">{{ item }}</span>
+      <div class="iconfont icon-del" @click="clearKey"></div>
     </div>
   </div>
 </template>
@@ -29,9 +30,18 @@ export default {
       searchKey: "",
     };
   },
+  mounted() {
+    this.searchList = JSON.parse(localStorage.getItem("searchList")) || [];
+  },
   methods: {
     addKey() {
       this.searchList.unshift(this.searchKey);
+      localStorage.setItem("searchList", JSON.stringify(this.searchList));
+      this.searchKey = "";
+    },
+    clearKey() {
+      localStorage.removeItem("searchList");
+      this.searchList = [];
     },
   },
 };
@@ -57,15 +67,22 @@ export default {
   padding-left: 8px;
   display: flex;
   align-items: center;
+  position: relative;
   div {
     margin-right: 10px;
     font-weight: 700;
   }
   span {
-    margin-right: 10px;
-    border-radius: 12px;
+    display: inline-block;
+    margin-right: 8px;
+    border-radius: 16px;
     background-color: rgb(174, 173, 173);
-    padding: 8px;
+    padding: 4px 8px;
+    white-space: pre;
+  }
+  .iconfont {
+    position: absolute;
+    right: 10px;
   }
 }
 </style>
