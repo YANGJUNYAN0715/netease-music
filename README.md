@@ -26,7 +26,7 @@ npm run build
   - Complete most of functions
 - 25.09.2022 - 1
   - Add function of Search
-  - Modify some functions
+  - Modify some layouts
 
 ![image-20220920180536108](photo/image-20220920180536108.png)
 

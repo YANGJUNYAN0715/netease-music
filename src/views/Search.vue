@@ -15,7 +15,7 @@
       />
     </div>
     <div class="history">
-      <div>历史</div>
+      <div style="white-space: nowrap">历史</div>
       <span v-for="(item, index) in searchList" :key="item">{{ item }}</span>
       <div class="iconfont icon-del" @click="clearKey"></div>
     </div>
@@ -35,9 +35,15 @@ export default {
   },
   methods: {
     addKey() {
-      this.searchList.unshift(this.searchKey);
-      localStorage.setItem("searchList", JSON.stringify(this.searchList));
-      this.searchKey = "";
+      if (this.searchKey !== "") {
+        this.searchList.unshift(this.searchKey);
+        this.searchList = [...new Set(this.searchList)];
+        if (this.searchList.length > 5) {
+          this.searchList.pop();
+        }
+        localStorage.setItem("searchList", JSON.stringify(this.searchList));
+        this.searchKey = "";
+      }
     },
     clearKey() {
       localStorage.removeItem("searchList");
@@ -66,23 +72,25 @@ export default {
   font-size: 16px;
   padding-left: 8px;
   display: flex;
-  align-items: center;
+  //   align-items: center;
   position: relative;
+  flex-wrap: wrap;
   div {
     margin-right: 10px;
     font-weight: 700;
   }
   span {
-    display: inline-block;
     margin-right: 8px;
+    margin-bottom: 8px;
     border-radius: 16px;
     background-color: rgb(174, 173, 173);
     padding: 4px 8px;
     white-space: pre;
+    display: inline-block;
   }
   .iconfont {
     position: absolute;
-    right: 10px;
+    right: 0px;
   }
 }
 </style>
