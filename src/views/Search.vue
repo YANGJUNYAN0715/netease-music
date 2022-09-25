@@ -71,7 +71,7 @@ export default {
         }
         localStorage.setItem("searchList", JSON.stringify(this.searchList));
         let res = await getResearchResult(this.searchKey);
-        console.log(res);
+        // console.log(res);
         this.searchList2 = res.data.result.songs;
         this.searchKey = "";
       }
@@ -83,7 +83,7 @@ export default {
     searchHistory: async function (item) {
       this.searchKey = item;
       let res = await this.addKey();
-      console.log(res);
+      // console.log(res);
     },
     updateIndex: function (item) {
       item.al = item.album;
