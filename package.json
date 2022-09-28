@@ -25,8 +25,9 @@
     "@vue/cli-service": "~4.5.15",
     "@vue/compiler-sfc": "^3.0.0",
     "less": "^3.0.4",
-    "less-loader": "^5.0.0",
-    "unplugin-vue-components": "^0.21.1"
+    "less-loader": "^`5.0.0",
+    "unplugin-vue-components": "^0.21.1",
+    "webpack-cli": "^4.10.0"
   },
   "browserslist": [
     "> 1%",
