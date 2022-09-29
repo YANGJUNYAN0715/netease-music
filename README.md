@@ -27,6 +27,9 @@ npm run build
 - 25.09.2022 - 1
   - Add function of Search
   - Modify some layouts
+- 28.08.2022 - 2
+  - Use Tecent Cloud Server and BT to deploy this programme
+
 
 ![image-20220920180536108](photo/image-20220920180536108.png)
 
